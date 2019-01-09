@@ -1,0 +1,19 @@
+{
+  "name": "formulacounter",
+  "version": "0.0.1",
+  "description": "Balances the elements to get the correct amount on each side.",
+  "main": "index.js",
+  "dependencies": {
+    "element": "element",
+    "typescript": "^3.2.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chemistry",
+    "elements"
+  ],
+  "author": "Simon",
+  "license": "ISC"
+}
