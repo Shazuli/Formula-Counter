@@ -63,10 +63,14 @@ for (var i=0;i<moleculeList[1].length;i++) {
 //var balancedMolecules = balance(moleculeList[0],moleculeList[1])
 //console.log(getElements(moleculeList[0]));
 
+console.log("Creating Matrix map ..");
+
 var matrix = createMatrix(moleculeList[0],moleculeList[1]);
 /*for (var y=0;y<matrix.length;y++) {
     console.log(matrix[y]);
 }*/
+console.log("Done.\n")
+printMatrix(matrix);
 
 
 function createMatrix(a,b) {
@@ -81,7 +85,6 @@ function createMatrix(a,b) {
         var el = yCol[y];
         for (var x=0;x<xCol1;x++) {
             m[y].push(0);
-            //console.log(a[x].elements[x])
         }
         for (var x=0;x<xCol2;x++) {
             m[y].push(0);
@@ -90,20 +93,18 @@ function createMatrix(a,b) {
     for (var y=0;y<m.length;y++) {
         for (var x=0;x<a.length;x++) {
             a[x].elements.forEach(element => {
-                //console.log(element.quantity)
                 if (element.name == yCol[y])
                     m[y][x] = element.quantity;
             });
         }
         for (var x=0;x<b.length;x++) {
             b[x].elements.forEach(element => {
-                //console.log(element.quantity)
                 if (element.name == yCol[y])
                     m[y][x+2] = -element.quantity;
             });
         }
     }
-    return m;
+    return [m,yCol];
 }
 
 function balance(a,b) {
@@ -140,6 +141,16 @@ function balance(a,b) {
         console.log(i[0],i[1]);
     });
     //return toRet;
+}
+
+function printMatrix(m) {
+    for (var y=0;y<m[0].length;y++) {
+        var l = m[1][y]+"| ";
+        for (var x=0;x<m[0][y].length;x++) {
+            l = l + m[0][y][x] + "  ";
+        }
+        console.log(l);
+    }
 }
 
 function printFormula(list) {
