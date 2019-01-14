@@ -8,6 +8,8 @@
 
 var test = "Cu4GG2"
 var formula = "C6H14 + O2 => CO2 + H2O";
+//Al + Fe3N2 => AlN + Fe
+//C6H14 + O2 => CO2 + H2O
 
 class Element {
     constructor(name,quantity) {
@@ -77,6 +79,7 @@ function createMatrix(a,b) {
     var yCol = getElements(a);
     var xCol1 = a.length;
     var xCol2 = b.length;
+    var mols = a.concat(b);
     var m =[];
     for (var y=0;y<yCol.length;y++)
         m.push([]);
@@ -91,16 +94,10 @@ function createMatrix(a,b) {
         }
     }
     for (var y=0;y<m.length;y++) {
-        for (var x=0;x<a.length;x++) {
-            a[x].elements.forEach(element => {
-                if (element.name == yCol[y])
-                    m[y][x] = element.quantity;
-            });
-        }
-        for (var x=0;x<b.length;x++) {
-            b[x].elements.forEach(element => {
-                if (element.name == yCol[y])
-                    m[y][x+2] = -element.quantity;
+        for (var x=0;x<m[y].length;x++) {
+            mols[x].elements.forEach(el => {
+                if (el.name == yCol[y])
+                    m[y][x] = el.quantity;
             });
         }
     }
